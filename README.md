@@ -58,12 +58,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Commit: `Create Notification service struct skeleton.`
+    -   [x] Commit: `Implement subscribe function in Notification service.`
+    -   [x] Commit: `Implement subscribe function in Notification controller.`
+    -   [x] Commit: `Implement unsubscribe function in Notification service.`
+    -   [x] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -92,5 +92,21 @@ This is the place for you to write reflections:
 * Walaupun pola Singleton dapat diimplementasikan dalam Rust tetapi penggunaannya tidak terlalu perlu pada kasus ini karena DashMap sudah menyediakan fungsionalitas yang diperlukan. Jadi, penggunaan DashMap adalah opsi yang tepat untuk kebutuhan *static variable* SUBSCRIBERS dalam Bambangshop.
 
 #### Reflection Publisher-2
+###### 1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+* Prinsip SRP (*Single Responsibility Principle*) menjelaskan bahwa penting untuk *class* yang hanya fokus pada satu tanggung jawab. Maka dari itu, perlunya pemisahan Service dan Repository dari Model sehingga Model hanya berkonsentrasi pada definisi struktur data.
+* *Design principle* menekankan mengenai pemisahan komponen berbeda agar setiap bagian bertanggung jawab atas tugasnya sendiri. Dengan memisahkan *business logic* ke Service dan operasi penyimpanan data ke Repository, Model hanya berfungsi sebagai representasi struktur data.
+* Pendekatan ini memungkinkan Model untuk lebih fleksibel dan mudah menyesuaikan perubahan dalam struktur data atau penyimpanan data tanpa harus memikirkan metode yang tidak diperlukan.
+
+###### 2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (**Program, Subscriber, Notification**) affect the code complexity for each model?
+* Jika kita hanya mengandalkan Model tanpa membagi tanggung jawab menjadi Service dan Repository akan menyebabkan model bertanggung jawab atas representasi data dan *business logic*. Hal ini dapat menghasilkan *class-class* dengan tanggung jawab yang berlebihan yang tidak sesuai dengan prinsip SRP.
+* Dikarenakan kesalahan ini, dapat mengakibatkan peningkatan kompleksitas kode, kesulitan dalam *maintain* dan memperluas kode, interaksi antar-model akan lebih rumit dan terikat satu sama lain, serta ketergantungan yang kuat antar-kode.
+* Misalnya, jika suatu Product harus memberi tahu Subscriber mengenai perubahan, bisa saja langsung berinteraksi dengan objek Subscriber untuk mengirimkan Notification. Hal ini tidak ideal karena melanggar prinsip enkapsulasi dan sulit dipahami kodenya.
+* Jadi, tanpa membagi tanggung jawab dengan benar, kompleksitas kode untuk setiap Model akan meningkat. Hal ini dapat membuat kode menjadi sulit dipahami, diuji, dan dipelihara.
+
+###### 3. Have you explored more about **Postman**? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+* Postman dapat membantu dalam *testing* program dengan mengirimkan respons menuju *endpoint* API. Hal ini dapat memungkinkan simulasi, tanpa perlu HTML.
+* Postman dapat mengirim permintaan, yaitu memfasilitasi pengiriman permintaan HTTP menuju *endpoint* API dengan parameter yang dapat disesuaikan, seperti *header, query* parameter, dan *request body*.
+* Postman memiliki *testing* otomatis yang memungkinkan pembuatan dan eksekusi serangkaian *testing* otomatis untuk memverifikasi *behaviour endpoint* API, termasuk status kode respons, isi *body* respons, dan lainnya.
+* Postman memiliki fitur *environment variable* yang dapat mempermudah beralih antara *environment* yang berbeda, seperti *development, staging, production* saat menguji API.
 
 #### Reflection Publisher-3
