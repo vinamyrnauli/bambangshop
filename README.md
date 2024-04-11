@@ -77,6 +77,19 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+###### 1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or **trait** in Rust) in this BambangShop case, or a single Model **struct** is enough?
+* *Observer design patterns* memungkinkan objek untuk diberitahu tentang perubahan pada objek lain Biasanya, ini menggunakan *trait* pada Rust atau *interface* untuk mendefinisikan metode-metode yang ingin digunakan.
+* Penggunaan *interface* atau *trait* pada Bambangshop tidak sepenuhnya diperlukan karena tidak ada variasi dalam behaviour* yang diharapkan dari *observer*.
+* Untuk alternatifnya, penggunaan satu struktur Model yang mencakup data mengenai *observer* dan *behaviour* yang diperlukan untuk memberi tahu bahwa sudah memadai. Jadi, penggunaan satu struktur Model untuk *observer* sudah memadai.
+
+###### 2. **id** in **Program** and **url** in **Subscriber** is intended to be unique. Explain based on your understanding, is using **Vec** (list) sufficient or using **DashMap** (map/dictionary) like we currently use is necessary for this case?
+* Apabila hanya ingin menyimpan ID atau URL dari *customer*, penggunaan Vec (list) sudah memadai. Akan tetapi, DashMap (*map/dictionary*) lebih disarankan karena memberikan keunggulan dalam kecepatan akses dan manipulasi data.
+* Dengan menggunakan DashMap, pengecekan terhadap ID atau URL yang sudah ada akan menjadi lebih sederhana. Selain itu, DashMap juga menyediakan akses dan pembaruan entri yang sudah ada dengan kecepatan yang lebih tinggi. Hal ini dapat meningkatkan efisiensi dan kinerja aplikasi.
+
+###### 3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (**SUBSCRIBERS**) static variable, we used the **DashMap** external library for **thread safe HashMap**. Explain based on your understanding of design patterns, do we still need **DashMap** or we can implement Singleton pattern instead?
+* *Singleton pattern* menjamin bahwa sebuah *class* hanya memiliki satu *instance* di seluruh aplikasi.
+* Penggunaan DashMap untuk *static variable* SUBSCRIBERS merupakan pilihan terbaik karena memungkinkan akses ke struktur data yang sama dari mana pun dalam aplikasi serta menjaga keamanan konkurensi. Jadi, DashMap memberikan solusi yang efektif untuk mengelola keamanan konkurensi dalam *multi-threaded environment* yang penting dalam pengembangan program Rust.
+* Walaupun pola Singleton dapat diimplementasikan dalam Rust tetapi penggunaannya tidak terlalu perlu pada kasus ini karena DashMap sudah menyediakan fungsionalitas yang diperlukan. Jadi, penggunaan DashMap adalah opsi yang tepat untuk kebutuhan *static variable* SUBSCRIBERS dalam Bambangshop.
 
 #### Reflection Publisher-2
 
